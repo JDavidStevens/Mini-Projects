@@ -1,12 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Javascript Countdown</title>
+    <style>
+        body {
+            background-color: red;
+            height: 100vh;
+            padding: 1vh 1vw 1vh 1vw;
+            background-image: url('https://cdn1.parksmedia.wdprapps.disney.com/media/blog/wp-content/uploads/2018/08/klhsdhgy3987821-624x351.jpg');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .content-container{
+            display: flex;
+            flex-direction: column;
+            /* justify-content: flex-end; */
+        }
+
+        .image-title-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .title {
+            color: red;
+            font-size: 50px;
+        }
+
+        .ms-left {
+            transform: rotate(300deg)
+        }
+
+        .ms-right {
+            margin-top: 9.5vh;
+            margin-left: -.25vw;
+            transform: rotate(120deg)
+        }
+
+        .radius {
+            display: flex;
+            justify-content: center;
+            right: 75%;
+            width: 30%;
+            border-radius: 100%;
+            background-color: red;
+        }
+
+        #countdown {
+            color: #537932;
+            text-align: right;
+            font-size: 30px;
+            text-shadow: 1px -1px black;
+            /* margin-top: 0px; */
+        }
+    </style>
 </head>
+
 <body>
-    
+    <div class="content-container">
+        <div class='image-title-container'>
+            <img class='ms-left' src='https://pics.clipartpng.com/Mistletoe_PNG_Clipart-38.png' height="100" width="100">
+            <p class="title">Christmas Countdown</p>
+            <img class='ms-right' src='https://pics.clipartpng.com/Mistletoe_PNG_Clipart-38.png' height="100" width="100">
+        </div>
+        <div class='radius'>
+            <p id="countdown"></p>
+        </div>
+    </div>
+
+
+    <script>
+        const Christmas = new Date('12/25/2018 12:00 AM MST');
+
+        const second = 1000;
+        const minute = second * 60;
+        const hour = minute * 60;
+        const day = hour * 24;
+        var timer;
+
+        function getMSTOffset() {
+
+            return new Date().getTimezoneOffset() - (Christmas.getTimezoneOffset())
+        }
+
+        function showRemaining() {
+            const now = new Date();
+            const distance = Christmas - now - getMSTOffset() * hour;
+            if (distance < 0) {
+
+                clearInterval(timer);
+                document.getElementById('countdown').innerHTML = 'Merry Christmas';
+
+                return;
+            }
+            const days = Math.floor(distance / day);
+            const hours = Math.floor((distance % day) / hour);
+            const minutes = Math.floor((distance % hour) / minute);
+            const seconds = Math.floor((distance % minute) / second);
+
+            document.getElementById('countdown').innerHTML = days + ' Days ';
+            document.getElementById('countdown').innerHTML += hours + ' Hours ';
+            document.getElementById('countdown').innerHTML += minutes + ' Minutes ';
+            document.getElementById('countdown').innerHTML += seconds + ' Seconds';
+        }
+
+        timer = setInterval(showRemaining, 1000);
+    </script>
 </body>
+
 </html>

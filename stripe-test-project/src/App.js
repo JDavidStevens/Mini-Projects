@@ -12,7 +12,7 @@ constructor(){
 onToken = (token) =>{
   token.card = void 0;
   console.log('token', token)
-  axios.post('http://localhost:4000/api/payment',{token, amount:100}).then(response=>{
+  axios.post('http://localhost:4000/api/payment',{token, amount:this.state.amount}).then(response=>{
     alert('we are in business')
   })
 }
@@ -20,7 +20,8 @@ onToken = (token) =>{
   render() {
     return (
       <div className="App">
-      <input onChange={e=>this.setState({amount:e.target.value * 100})}/>
+      <input placeholder="enter a test amount" onChange={e=>this.setState({amount:e.target.value * 100})}/>
+      <br/>
         <StripeCheckout
         token={this.onToken}
         stripeKey={process.env.REACT_APP_PK}

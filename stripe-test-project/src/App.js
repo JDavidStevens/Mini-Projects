@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
+import Swal from 'sweetalert2';
 import axios from 'axios';
 import './App.css'
 
@@ -7,23 +8,50 @@ class App extends Component {
 constructor(){
   super()
   this.state={
-    amount: ''
+    amount: 0
   }
 }
-onToken = (token) =>{
+
+onToken=(token)=>{
   token.card = void 0;
-  console.log('token', token)
   axios.post('http://localhost:4000/api/payment',{token, amount:this.state.amount}).then(response=>{
-    alert('we are in business')
+    Swal('payment successfully received by Stripe')
+    
   })
 }
+    
 
-  render() {
+handleAmount(value){
+  const amountArray = value.split('');
+  const pennies = [];
+  for (var i = 0; i < amountArray.length; i++) {
+    if(amountArray[i] === ".") {
+      if (typeof amountArray[i + 1] === "string") {
+        pennies.push(amountArray[i + 1]);
+      } else {
+        pennies.push("0");
+      }
+      if (typeof amountArray[i + 2] === "string") {
+        pennies.push(amountArray[i + 2]);
+      } else {
+        pennies.push("0");
+      }
+    	break;
+    } else {
+    	pennies.push(amountArray[i])
+    }
+  }
+  const convertedAmt = parseInt(pennies.join(''));
+this.setState({amount: convertedAmt})
+}
+
+render() {
+  console.log('state',this.state.amount)
     return (
       <div className="App">
-      <input placeholder="enter a test amount" onChange={e=>this.setState({amount:e.target.value * 100})}/>
+      <input placeholder="enter a test amount" onChange={e=>this.handleAmount(e.target.value)}/>
       <br/>
-        <StripeCheckout
+        <StripeCheckout 
         token={this.onToken}
         stripeKey={process.env.REACT_APP_PK}
         amount={this.state.amount}

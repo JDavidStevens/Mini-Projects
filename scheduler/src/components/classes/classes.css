@@ -1,7 +1,7 @@
 .classes{
-    justify-content: center;
+    justify-content: space-around;
     display: grid;
-    grid-template-columns: 45% 45%;
+    grid-template-columns: 48% 48%;
     grid-template-rows: 50vh 50vh 50vh 50vh 50vh 50vh;
     margin-bottom: 5vh;
 }
@@ -10,13 +10,32 @@
     flex-direction: column;
     border-radius: 2px;
     background-color: #ffffff;
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2);    
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.1), 0 4px 5px 0 rgba(0,0,0,0.2);    
     margin: .75vh .25vw .5vh .25vw;
     padding-bottom: .25vh;
 }
 .row{
     display: flex;
 }
+
+.project-title{
+    margin-bottom: 1vh;
+    color: rgb(171, 230, 94);
+}
+.class-info{
+margin-left: 2vw;
+color: pink;
+}
+
+.sign-up-button{
+    background-color: rgb(226, 43, 171);
+    border: none;
+    border-radius: 10%;
+    width: 6vw;
+    height: 6vh;
+}
+
 .project-image{
-    width: 300px;
+    width: 360px;
+    margin:0 0 2vh 15vw;
 }

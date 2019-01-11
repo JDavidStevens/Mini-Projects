@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Popup from "reactjs-popup";
 import './classes.css';
+import Signup from './signup/signup';
 
 class Classes extends Component {
   constructor(){
@@ -21,16 +23,19 @@ class Classes extends Component {
     const list = this.state.event.map((element,index)=>{
       return(
       <div className="card-container" key={index}>
-<h2>{element.title}</h2>
+<h2 className='project-title'>{element.title}</h2>
 <div className='row'>
-<div>
+<div className='class-info'>
 <p>{element.date}</p>
 <p>{element.time}</p>
 <p>{element.location}</p>
+      <Popup trigger={<button className='sign-up-button'>Sign Up!</button>} modal>
+      <Signup let classInfo={element}/>
+      </Popup>
 </div>
 </div>
 <div>
-<img className="project-image" src={element.image} alt="project image"/>
+<img className="project-image" src={element.image} alt=""/>
 {/* <p>{element.description}</p> */}
 </div>
       </div>)

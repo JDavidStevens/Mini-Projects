@@ -18,6 +18,8 @@ massive(CONNECTION_STRING).then(dbInstance => {
 
 app.get('/api/events', cntrl.eventList)
 
+app.get('/api/classRoster',cntrl.roster)
+
 app.listen(SERVER_PORT, () => {
     console.log(`Server is listening on port ${SERVER_PORT}`)
 })

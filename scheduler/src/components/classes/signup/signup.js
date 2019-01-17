@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import PhoneInput from 'react-phone-number-input';
-import 'react-phone-number-input/style.css';
+import axios from 'axios';
+import {Link} from 'react-router-dom';
 import './signup.css';
 
+
 class Signup extends Component {
-constructor(){
-    super()
+constructor(props){
+    super(props)
     this.state={
         first: '',
         last: '',
@@ -13,28 +14,52 @@ constructor(){
         phone: ''
     }
 }
+
+
+
+handleFirstName(value){
+    this.setState({first:value})
+}
+
+handleLastName(value){
+    this.setState({last:value})
+}
+
+handleEmail(value){
+    this.setState({email:value})
+}
+
+handlePhone(value){
+    this.setState({phone:value})
+}
+
+handleSignUp(){
+    console.log('state',this.state.attending)
+this.state.attending.map(element=>{
+    if(element.phone===this.state.phone){
+        alert(`Oops! Based on the phone number you provided, it looks like you have already registered for the ${this.props.classInfo.title} class`)
+    }else{
+
+    }
+})
+}
     render() {
+        console.log('attending',this.state.attending)
+        console.log('phone',this.state.phone)
         return (
             <div>
                 <h1>{this.props.classInfo.title}</h1>
                 <form>
                     first name:<br/>
-                    <input type="text" required/><br/>
+                    <input type="text" onChange={e=>{this.handleFirstName(e.target.value)}} required/><br/>
                     last name:<br/>
-                    <input type="text" required/><br/>
+                    <input type="text" onChange={e=>{this.handleLastName(e.target.value)}} required/><br/>
                     email: <br/>
-                    <input type="email" required/><br/>
-                    phone:<br/>
-                    {/* <PhoneInput
-                    country='US'
-                    // value= {this.state.phone}
-                    onChange={ phone => this.setState({ phone }) }
-                    maxLength={14}
-                    /> */}
-                    <input type="tel" size='12' maxLength='12' placeholder='000-000-0000'
-                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    <input type="email" onChange={e=>{this.handleEmail(e.target.value)}} required/><br/>
+                    phone (w/o dashes):<br/>
+                    <input type="tel" size='12' maxLength='10' onChange={e=>{this.handlePhone(e.target.value)}}
                     required/><br/>
-                    <span>required format: 123-456-7890</span>
+                    <input type="submit" value="continue" onClick={this.handleSignUp}/>
                 </form>
             </div>
         )

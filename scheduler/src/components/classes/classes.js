@@ -3,6 +3,7 @@ import axios from 'axios';
 import Popup from "reactjs-popup";
 import './classes.css';
 import Signup from './signup/signup';
+import swal from 'sweetalert2';
 
 class Classes extends Component {
   constructor(){
@@ -18,6 +19,7 @@ class Classes extends Component {
     })
   }
 
+
   render() {
     console.log('event',this.state.event)
     const list = this.state.event.map((element,index)=>{
@@ -29,9 +31,11 @@ class Classes extends Component {
 <p>{element.date}</p>
 <p>{element.time}</p>
 <p>{element.location}</p>
-      <Popup trigger={<button className='sign-up-button'>Sign Up!</button>} modal>
+      <Popup trigger={ 
+      <button className='sign-up-button'>Sign Up!</button>}
+       modal>
       <Signup let classInfo={element}/>
-      </Popup>
+      </Popup> 
 </div>
 </div>
 <div>

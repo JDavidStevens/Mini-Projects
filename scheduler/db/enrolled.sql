@@ -1,0 +1,1 @@
+select phone from attendance where class_id=$1;

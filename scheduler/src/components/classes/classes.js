@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Popup from "reactjs-popup";
 import './classes.css';
+import Banner from '../banner/banner';
 import Signup from './signup/signup';
 import swal from 'sweetalert2';
 
@@ -21,7 +22,7 @@ class Classes extends Component {
 
 
   render() {
-    console.log('event',this.state.event)
+    // console.log('event',this.state.event)
     const list = this.state.event.map((element,index)=>{
       return(
       <div className="card-container" key={index}>
@@ -46,8 +47,11 @@ class Classes extends Component {
     })
 
     return (
+      <div>
+      <Banner/>
       <div className="classes">
         {list}
+      </div>
       </div>
     );
   }

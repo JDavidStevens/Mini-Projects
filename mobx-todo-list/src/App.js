@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {inject,observer} from "mobx-react";
-import { EMPTY_OBJECT } from 'mobx/lib/internal';
 
 @inject("TodoStore")
 @observer

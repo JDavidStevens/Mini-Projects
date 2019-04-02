@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {inject,observer} from "mobx-react";
+import { EMPTY_OBJECT } from 'mobx/lib/internal';
 
 @inject("TodoStore")
 @observer
@@ -51,3 +52,9 @@ toggleComplete(todo){
 }
 
 export default App;
+
+///////////////////SET UP INSTRUCTIONS///////////////////
+// npm run eject
+// npm install --save-dev @babel/plugin-proposal-decorators
+// modify package.json Babel section (see package.json in this project for example)
+// npm i mobx mobx-react
